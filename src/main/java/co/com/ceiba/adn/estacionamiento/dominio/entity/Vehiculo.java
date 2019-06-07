@@ -14,7 +14,7 @@ public class Vehiculo {
 	public Vehiculo(String placa, int cilindraje, TipoVehiculo tipo) {
 		
 		ArgumentoValidator.validarRequerido(placa, "El número de placa es obligatorio");
-		ArgumentoValidator.validarRequerido(cilindraje, "El cilindraje del vehículo es obligatorio");
+		ArgumentoValidator.validarMayorACero(cilindraje, "El cilindraje no puede ser cero o negativo");
 		ArgumentoValidator.validarRequerido(tipo, "El tipo del vehículo es obligatorio");
 		
 		this.placa = placa;

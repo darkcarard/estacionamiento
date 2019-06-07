@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculo;
 import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
+import co.com.ceiba.adn.estacionamiento.dominio.exception.EstacionamientoException;
+import co.com.ceiba.adn.estacionamiento.test.dominio.BasePrueba;
 import co.com.ceiba.adn.estacionamiento.test.dominio.databuilder.VehiculoTestDataBuilder;
 
 public class VehiculoTest {
@@ -14,6 +16,10 @@ public class VehiculoTest {
 	private static final String PLACA = "ABC123";
 	private static final int CILINDRAJE = 1500;
 	private static final TipoVehiculo TIPO = new TipoVehiculo(1);
+	private static final String MENSAJE_PLACA_OBLIGATORIA = "El número de placa es obligatorio";
+	private static final String MENSAJE_CILINDRAJE_MAYO_CERO = "El cilindraje no puede ser cero o negativo";
+	private static final String MENSAJE_TIPO_OBLIGATORIO = "El tipo del vehículo es obligatorio";
+	
 	
 	private Vehiculo vehiculo; 
 	
@@ -26,8 +32,26 @@ public class VehiculoTest {
 	
 	@Test
 	public void vehiculoBuild() {
-
 		assertEquals(PLACA, vehiculo.getPlaca());
 	}
+	
+	@Test
+	public void vehiculoPlacaObligatoria() {
+		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withPlaca(null);
+		BasePrueba.assertThrows(() -> vehiculoTestDataBuilder.build(), EstacionamientoException.class, MENSAJE_PLACA_OBLIGATORIA);
+	}
+	
+	@Test
+	public void vehiculoCilindrajeObligatorio() {
+		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withCilindraje(0);
+		BasePrueba.assertThrows(() -> vehiculoTestDataBuilder.build(), EstacionamientoException.class, MENSAJE_CILINDRAJE_MAYO_CERO);
+	}
 
+	@Test
+	public void vehiculoTipoObligatorio() {
+		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withTipo(null);
+		BasePrueba.assertThrows(() -> vehiculoTestDataBuilder.build(), EstacionamientoException.class, MENSAJE_TIPO_OBLIGATORIO);
+	}
+
+	
 }

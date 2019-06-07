@@ -40,10 +40,7 @@ public class VehiculoTestDataBuilder {
 	
 	public Vehiculo build() {
 		
-		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setPlaca(placa);
-		vehiculo.setCilindraje(cilindraje);
-		vehiculo.setTipo(tipo);
+		Vehiculo vehiculo = new Vehiculo(placa, cilindraje, tipo);
 		
 		return vehiculo;
 	}
