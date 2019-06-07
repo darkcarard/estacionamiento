@@ -24,7 +24,7 @@ pipeline {
 				doGenerateSubmoduleConfigurations: false, extensions: [], gitTool:
 				'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:
 				'GitHub_carlos.ardila', url:
-				'https://github.com/darkcarard/Ceiba-Estacionamiento']]])
+				'https://github.com/darkcarard/estacionamiento.git']]])
 			}
 		}
 		stage('Compile') {
