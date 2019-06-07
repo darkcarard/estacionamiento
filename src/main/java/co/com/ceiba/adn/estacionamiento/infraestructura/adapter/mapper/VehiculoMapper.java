@@ -19,7 +19,6 @@ public final class VehiculoMapper {
 		TipoVehiculoEntity tipoVehiculoEntity = new TipoVehiculoEntity();
 		tipoVehiculoEntity.setId(vehiculo.getTipo().getId());
 		tipoVehiculoEntity.setNombre(vehiculo.getTipo().getNombre());
-		tipoVehiculoEntity.setDescripcion(vehiculo.getTipo().getDescripcion());
 		tipoVehiculoEntity.setValorHora(vehiculo.getTipo().getValorHora());
 		tipoVehiculoEntity.setValorDia(vehiculo.getTipo().getValorDia());
 		tipoVehiculoEntity.setCantidadMaxima(vehiculo.getTipo().getCantidadMaxima());
@@ -38,7 +37,6 @@ public final class VehiculoMapper {
 		TipoVehiculo tipoVehiculo = new TipoVehiculo();
 		tipoVehiculo.setId(vehiculoEntity.getTipo().getId());
 		tipoVehiculo.setNombre(vehiculoEntity.getTipo().getNombre());
-		tipoVehiculo.setDescripcion(vehiculoEntity.getTipo().getDescripcion());
 		tipoVehiculo.setValorHora(vehiculoEntity.getTipo().getValorHora());
 		tipoVehiculo.setValorDia(vehiculoEntity.getTipo().getValorDia());
 		tipoVehiculo.setCantidadMaxima(vehiculoEntity.getTipo().getCantidadMaxima());

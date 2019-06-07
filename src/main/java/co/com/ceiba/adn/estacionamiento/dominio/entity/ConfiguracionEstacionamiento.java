@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ConfiguracionEstacionamiento {
 
+	private byte id;
 	private TipoVehiculo tipoVehiculo;
 	private int cantidadActual;
 }

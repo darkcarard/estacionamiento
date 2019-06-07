@@ -10,7 +10,7 @@ import co.com.ceiba.adn.estacionamiento.test.dominio.databuilder.TipoVehiculoTes
 
 public class TipoVehiculoTest {
 
-	private static final int ID = 1;
+	private static final byte ID = 1;
 	private static final String NOMBRE = "Carro";
 	private static final String DESCRIPCION = "Vehículos de 4 ruedas";
 	private static final float VALOR_HORA = 1000F;
@@ -23,7 +23,7 @@ public class TipoVehiculoTest {
 	public void setUp() {
 
 		TipoVehiculoTestDataBuilder tipoVehiculoTestDataBuilder = new TipoVehiculoTestDataBuilder().withId(ID)
-				.withNombre(NOMBRE).withDescripcion(DESCRIPCION).withValorHora(VALOR_HORA).withValorDia(VALOR_DIA)
+				.withNombre(NOMBRE).withValorHora(VALOR_HORA).withValorDia(VALOR_DIA)
 				.withCantidadMaxima(CANTIDAD_MAXIMA);
 		tipoVehiculo = tipoVehiculoTestDataBuilder.build();
 	}
@@ -32,7 +32,6 @@ public class TipoVehiculoTest {
 	public void tipoVehiculoBuild() {
 		assertEquals(ID, tipoVehiculo.getId());
 		assertEquals(NOMBRE, tipoVehiculo.getNombre());
-		assertEquals(DESCRIPCION, tipoVehiculo.getDescripcion());
 		assertEquals(VALOR_HORA, tipoVehiculo.getValorHora(), 0);
 		assertEquals(VALOR_DIA, tipoVehiculo.getValorDia(), 0);
 		assertEquals(CANTIDAD_MAXIMA, tipoVehiculo.getCantidadMaxima());

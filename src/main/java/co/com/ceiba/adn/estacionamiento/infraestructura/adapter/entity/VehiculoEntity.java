@@ -1,13 +1,11 @@
 package co.com.ceiba.adn.estacionamiento.infraestructura.adapter.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,22 +13,19 @@ import javax.persistence.Table;
 public class VehiculoEntity {
 
 	@Id
-	@Column
+	@Column(name = "placa")
 	private String placa;
 
 	@Column(name = "cilindraje")
 	private int cilindraje;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="tipo")
 	private TipoVehiculoEntity tipo;
 
-	@OneToMany(mappedBy="vehiculo")
-	private List<EstacionamientoEntity> estacionamientos;
-	
-	public VehiculoEntity() {
-		
-	}
+	@ManyToOne
+	@JoinColumn(name="id")
+	private EstacionamientoEntity estacionamiento;
 
 	public String getPlaca() {
 		return placa;
@@ -56,12 +51,11 @@ public class VehiculoEntity {
 		this.tipo = tipo;
 	}
 
-	public List<EstacionamientoEntity> getEstacionamientos() {
-		return estacionamientos;
+	public EstacionamientoEntity getEstacionamiento() {
+		return estacionamiento;
 	}
 
-	public void setEstacionamientos(List<EstacionamientoEntity> estacionamientos) {
-		this.estacionamientos = estacionamientos;
+	public void setEstacionamiento(EstacionamientoEntity estacionamiento) {
+		this.estacionamiento = estacionamiento;
 	}
-
 }

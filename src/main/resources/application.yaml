@@ -1,7 +1,7 @@
 spring:
    datasource:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://172.16.13.128:3306/ceiba_estacionamiento
+      url: jdbc:mysql://172.16.13.128:3306/estacionamiento
       username: admin
       password: Adn_2019
    jpa:

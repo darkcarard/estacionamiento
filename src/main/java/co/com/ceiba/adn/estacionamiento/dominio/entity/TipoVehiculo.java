@@ -9,14 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TipoVehiculo {
 
-	private int id;
+	private byte id;
 	private String nombre;
-	private String descripcion;
 	private float valorHora;
 	private float valorDia;
 	private int cantidadMaxima;
 	
-	public TipoVehiculo(int id) {
+	public TipoVehiculo(byte id) {
 		this.id = id;
 	}
 	

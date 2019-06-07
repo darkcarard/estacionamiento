@@ -1,9 +1,9 @@
 package co.com.ceiba.adn.estacionamiento.infraestructura.adapter.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -14,13 +14,14 @@ import lombok.Data;
 @Entity
 @Table(name = "configuracion_estacionamiento")
 @Data
-public class ConfiguracionEstacionamientoEntity implements Serializable {
-	
-	private static final long serialVersionUID = -2594288359271499956L;
+public class ConfiguracionEstacionamientoEntity {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private byte id;
+	
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name="tipo_vehiculo")
 	private TipoVehiculoEntity tipoVehiculo;
 	
 	@Column(name = "cantidad_actual")

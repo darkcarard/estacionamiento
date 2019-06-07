@@ -9,7 +9,19 @@ import lombok.Data;
 public class Estacionamiento {
 
 	private int id;
-	private List<Vehiculo> vehiculos;
 	private Date fechaIngreso;
 	private Date fechaSalida;
+	private List<Vehiculo> vehiculos;
+	
+	public boolean validarCupo(ConfiguracionEstacionamiento configuracionEstacionamiento, TipoVehiculo tipoVehiculo) {
+		
+		long cantidad = vehiculos.stream().filter(v -> v.getTipo().equals(tipoVehiculo)).count();
+		
+		return cantidad <= tipoVehiculo.getCantidadMaxima();
+	}
+
+
+
+	
+	
 }

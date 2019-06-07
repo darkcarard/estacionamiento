@@ -12,15 +12,11 @@ import javax.persistence.Table;
 public class TipoVehiculoEntity {
 	
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private byte id;
 	
 	@Column(name = "nombre")
 	private String nombre;
-	
-	@Column(name = "descripcion")
-	private String descripcion;
 	
 	@Column(name = "valor_hora")
 	private float valorHora;
@@ -35,21 +31,20 @@ public class TipoVehiculoEntity {
 	
 	}
 
-	public TipoVehiculoEntity(int id, String nombre, String descripcion, float valorHora, float valorDia,
+	public TipoVehiculoEntity(byte id, String nombre, float valorHora, float valorDia,
 			int cantidadMaxima) {
 		this.id = id;
 		this.nombre = nombre;
-		this.descripcion = descripcion;
 		this.valorHora = valorHora;
 		this.valorDia = valorDia;
 		this.cantidadMaxima = cantidadMaxima;
 	}
 
-	public int getId() {
+	public byte getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(byte id) {
 		this.id = id;
 	}
 
@@ -59,14 +54,6 @@ public class TipoVehiculoEntity {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public float getValorHora() {
@@ -92,4 +79,5 @@ public class TipoVehiculoEntity {
 	public void setCantidadMaxima(int cantidadMaxima) {
 		this.cantidadMaxima = cantidadMaxima;
 	}
+	
 }

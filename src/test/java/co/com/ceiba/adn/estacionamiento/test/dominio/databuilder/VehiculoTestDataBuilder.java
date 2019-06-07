@@ -7,7 +7,7 @@ public class VehiculoTestDataBuilder {
 	
 	private static final String PLACA = "ABC123";
 	private static final int CILINDRAJE = 1500;
-	private static final TipoVehiculo TIPO = new TipoVehiculo(1);
+	private static final TipoVehiculo TIPO = new TipoVehiculo((byte) 1);
 	
 	private String placa;
 	private int cilindraje;
