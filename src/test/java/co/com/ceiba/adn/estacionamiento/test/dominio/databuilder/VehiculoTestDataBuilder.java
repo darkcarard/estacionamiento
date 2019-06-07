@@ -40,9 +40,8 @@ public class VehiculoTestDataBuilder {
 	
 	public Vehiculo build() {
 		
-		Vehiculo vehiculo = new Vehiculo(placa, cilindraje, tipo);
+		return new Vehiculo(placa, cilindraje, tipo);
 		
-		return vehiculo;
 	}
 
 }
