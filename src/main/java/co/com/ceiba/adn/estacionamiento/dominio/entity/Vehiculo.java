@@ -1,17 +1,21 @@
 package co.com.ceiba.adn.estacionamiento.dominio.entity;
 
+import java.util.List;
+
+import co.com.ceiba.adn.estacionamiento.infraestructura.adapter.entity.TicketEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Data
 public class Vehiculo {
 
 	private String placa;
 	private int cilindraje;
-	private TipoVehiculo tipo;
-	private Estacionamiento estacionamiento;
-	
-	public Vehiculo() {
+	private TipoVehiculoEnum tipo;
+	private List<TicketEntity> tickets;
 
-	}
-
-	public Vehiculo(String placa, int cilindraje, TipoVehiculo tipo) {
+	public Vehiculo(String placa, int cilindraje, TipoVehiculoEnum tipo) {
 		
 		ArgumentoValidator.validarRequerido(placa, "El número de placa es obligatorio");
 		ArgumentoValidator.validarMayorACero(cilindraje, "El cilindraje no puede ser cero o negativo");
@@ -20,38 +24,6 @@ public class Vehiculo {
 		this.placa = placa;
 		this.cilindraje = cilindraje;
 		this.tipo = tipo;
-	}
-
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
-	public int getCilindraje() {
-		return cilindraje;
-	}
-
-	public void setCilindraje(int cilindraje) {
-		this.cilindraje = cilindraje;
-	}
-
-	public TipoVehiculo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoVehiculo tipo) {
-		this.tipo = tipo;
-	}
-
-	public Estacionamiento getEstacionamiento() {
-		return estacionamiento;
-	}
-
-	public void setEstacionamiento(Estacionamiento estacionamiento) {
-		this.estacionamiento = estacionamiento;
 	}
 	
 }

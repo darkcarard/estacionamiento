@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculo;
+import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculoEnum;
 import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
 import co.com.ceiba.adn.estacionamiento.dominio.exception.EstacionamientoException;
 import co.com.ceiba.adn.estacionamiento.test.dominio.BasePrueba;
@@ -15,7 +15,7 @@ public class VehiculoTest {
 
 	private static final String PLACA = "ABC123";
 	private static final int CILINDRAJE = 1500;
-	private static final TipoVehiculo TIPO = new TipoVehiculo((byte) 1);
+	private static final TipoVehiculoEnum TIPO = TipoVehiculoEnum.CARRO;
 	private static final String MENSAJE_PLACA_OBLIGATORIA = "El número de placa es obligatorio";
 	private static final String MENSAJE_CILINDRAJE_MAYO_CERO = "El cilindraje no puede ser cero o negativo";
 	private static final String MENSAJE_TIPO_OBLIGATORIO = "El tipo del vehículo es obligatorio";

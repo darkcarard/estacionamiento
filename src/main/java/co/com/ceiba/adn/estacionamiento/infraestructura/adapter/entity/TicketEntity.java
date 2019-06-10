@@ -1,25 +1,24 @@
 package co.com.ceiba.adn.estacionamiento.infraestructura.adapter.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "estacionamiento")
-public class EstacionamientoEntity {
+@Table(name = "ticket")
+public class TicketEntity {
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -30,8 +29,11 @@ public class EstacionamientoEntity {
 	@Column(name = "fecha_salida")
 	private Date fechaSalida;
 
-	@OneToMany(mappedBy="estacionamiento")
-	private List<VehiculoEntity> vehiculos;
+	@ManyToOne
+	@JoinColumn(name = "vehiculo")
+	private VehiculoEntity vehiculo;
+
+	private byte pagado;
 
 	public int getId() {
 		return id;
@@ -57,26 +59,19 @@ public class EstacionamientoEntity {
 		this.fechaSalida = fechaSalida;
 	}
 
-	public List<VehiculoEntity> getVehiculos() {
-		return vehiculos;
+	public byte getPagado() {
+		return this.pagado;
 	}
 
-	public void setVehiculos(List<VehiculoEntity> vehiculos) {
-		this.vehiculos = vehiculos;
-	}
-	
-	public VehiculoEntity addVehiculo(VehiculoEntity vehiculo) {
-		getVehiculos().add(vehiculo);
-		vehiculo.setEstacionamiento(this);
-
-		return vehiculo;
+	public void setPagado(byte pagado) {
+		this.pagado = pagado;
 	}
 
-	public VehiculoEntity removeVehiculo(VehiculoEntity vehiculo) {
-		getVehiculos().remove(vehiculo);
-		vehiculo.setEstacionamiento(null);
-
-		return vehiculo;
+	public VehiculoEntity getVehiculo() {
+		return this.vehiculo;
 	}
 
+	public void setVehiculo(VehiculoEntity vehiculo) {
+		this.vehiculo = vehiculo;
+	}
 }

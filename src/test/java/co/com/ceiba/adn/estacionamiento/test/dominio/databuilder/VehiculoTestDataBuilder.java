@@ -1,17 +1,17 @@
 package co.com.ceiba.adn.estacionamiento.test.dominio.databuilder;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculo;
+import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculoEnum;
 import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
 
 public class VehiculoTestDataBuilder {
 	
 	private static final String PLACA = "ABC123";
 	private static final int CILINDRAJE = 1500;
-	private static final TipoVehiculo TIPO = new TipoVehiculo((byte) 1);
+	private static final TipoVehiculoEnum TIPO = TipoVehiculoEnum.CARRO;
 	
 	private String placa;
 	private int cilindraje;
-	private TipoVehiculo tipo;
+	private TipoVehiculoEnum tipo;
 	
 	public VehiculoTestDataBuilder() {
 		
@@ -32,7 +32,7 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}
 	
-	public VehiculoTestDataBuilder withTipo(TipoVehiculo tipo) {
+	public VehiculoTestDataBuilder withTipo(TipoVehiculoEnum tipo) {
 		this.tipo = tipo;
 		
 		return this;

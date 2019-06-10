@@ -1,31 +1,30 @@
 package co.com.ceiba.adn.estacionamiento.infraestructura.adapter.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculoEnum;
 
 @Entity
 @Table(name = "vehiculo")
 public class VehiculoEntity {
 
 	@Id
-	@Column(name = "placa")
 	private String placa;
 
-	@Column(name = "cilindraje")
 	private int cilindraje;
 
-	@OneToOne
-	@JoinColumn(name="tipo")
-	private TipoVehiculoEntity tipo;
+	@Enumerated(EnumType.STRING)
+	private TipoVehiculoEnum tipo;
 
-	@ManyToOne
-	@JoinColumn(name="id")
-	private EstacionamientoEntity estacionamiento;
+	@OneToMany(mappedBy = "vehiculo")
+	private List<TicketEntity> tickets;
 
 	public String getPlaca() {
 		return placa;
@@ -43,19 +42,33 @@ public class VehiculoEntity {
 		this.cilindraje = cilindraje;
 	}
 
-	public TipoVehiculoEntity getTipo() {
+	public TipoVehiculoEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoVehiculoEntity tipo) {
+	public void setTipo(TipoVehiculoEnum tipo) {
 		this.tipo = tipo;
 	}
 
-	public EstacionamientoEntity getEstacionamiento() {
-		return estacionamiento;
+	public List<TicketEntity> getTickets() {
+		return this.tickets;
 	}
 
-	public void setEstacionamiento(EstacionamientoEntity estacionamiento) {
-		this.estacionamiento = estacionamiento;
+	public void setTickets(List<TicketEntity> tickets) {
+		this.tickets = tickets;
+	}
+
+	public TicketEntity addTicket(TicketEntity ticket) {
+		getTickets().add(ticket);
+		ticket.setVehiculo(this);
+
+		return ticket;
+	}
+
+	public TicketEntity removeTicket(TicketEntity ticket) {
+		getTickets().remove(ticket);
+		ticket.setVehiculo(null);
+
+		return ticket;
 	}
 }
