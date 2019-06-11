@@ -1,20 +1,28 @@
 package co.com.ceiba.adn.estacionamiento.test.dominio.databuilder;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
+import co.com.ceiba.adn.estacionamiento.dominio.entity.Estacionamiento;
+import co.com.ceiba.adn.estacionamiento.dominio.entity.Ticket;
 
 public class EstacionamientoTestDataBuilder {
 	
-	private static final int ID = 1;
-	private static final Date FECHA_INGRESO = new Date();
-	private static final Date FECHA_SALIDA = new Date();
-	private static final List<Vehiculo> VEHICULOS = new ArrayList<>();
+	private static final List<Ticket> DEFAULT_TICKETS = new ArrayList<>();
+	
+	private List<Ticket> tickets;
 	
 	public EstacionamientoTestDataBuilder() {
-		
+		tickets = DEFAULT_TICKETS;
 	}
 
+	public EstacionamientoTestDataBuilder withTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+		return this;
+	}
+	
+	public Estacionamiento build() {
+		return new Estacionamiento(tickets);
+	}
+	
 }

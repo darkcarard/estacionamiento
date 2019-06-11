@@ -5,9 +5,9 @@ import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
 
 public class VehiculoTestDataBuilder {
 	
-	private static final String PLACA = "ABC123";
-	private static final int CILINDRAJE = 1500;
-	private static final TipoVehiculoEnum TIPO = TipoVehiculoEnum.CARRO;
+	private static final String DEFAULT_PLACA = "ABC123";
+	private static final int DEFAULT_CILINDRAJE = 1500;
+	private static final TipoVehiculoEnum DEFAULT_TIPO = TipoVehiculoEnum.CARRO;
 	
 	private String placa;
 	private int cilindraje;
@@ -15,9 +15,9 @@ public class VehiculoTestDataBuilder {
 	
 	public VehiculoTestDataBuilder() {
 		
-		placa = PLACA;
-		cilindraje = CILINDRAJE;
-		tipo = TIPO;
+		placa = DEFAULT_PLACA;
+		cilindraje = DEFAULT_CILINDRAJE;
+		tipo = DEFAULT_TIPO;
 	}
 	
 	public VehiculoTestDataBuilder withPlaca(String placa) {

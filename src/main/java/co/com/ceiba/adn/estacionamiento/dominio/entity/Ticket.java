@@ -1,6 +1,6 @@
 package co.com.ceiba.adn.estacionamiento.dominio.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class Ticket {
 
 	private int id;
-	private Date fechaIngreso;
-	private Date fechaSalida;
+	private LocalDateTime fechaIngreso;
+	private LocalDateTime fechaSalida;
 	private Vehiculo vehiculo;
 	
 }
