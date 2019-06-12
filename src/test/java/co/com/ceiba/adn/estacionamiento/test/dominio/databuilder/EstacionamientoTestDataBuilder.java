@@ -3,8 +3,8 @@ package co.com.ceiba.adn.estacionamiento.test.dominio.databuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Estacionamiento;
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Ticket;
+import co.com.ceiba.dna.parking.domain.entity.Parking;
+import co.com.ceiba.dna.parking.domain.entity.Ticket;
 
 public class EstacionamientoTestDataBuilder {
 	
@@ -21,8 +21,8 @@ public class EstacionamientoTestDataBuilder {
 		return this;
 	}
 	
-	public Estacionamiento build() {
-		return new Estacionamiento(tickets);
+	public Parking build() {
+		return new Parking(tickets);
 	}
 	
 }

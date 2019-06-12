@@ -2,19 +2,19 @@ package co.com.ceiba.adn.estacionamiento.test.dominio.databuilder;
 
 import java.time.LocalDateTime;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Ticket;
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
+import co.com.ceiba.dna.parking.domain.entity.Ticket;
+import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 
 public class TicketTestDataBuilder {
 	
 	private static final int DEFAULT_ID = 1;
 	private static final LocalDateTime DEFAULT_FECHA_INGRESO = LocalDateTime.now();
-	private static final Vehiculo DEFAULT_VEHICULO = new VehiculoTestDataBuilder().build();
+	private static final Vehicle DEFAULT_VEHICULO = new VehiculoTestDataBuilder().build();
 	
 	private int id;
 	private LocalDateTime fechaIngreso;
 	private LocalDateTime fechaSalida;
-	private Vehiculo vehiculo;
+	private Vehicle vehiculo;
 	
 	public TicketTestDataBuilder() {
 		
@@ -38,7 +38,7 @@ public class TicketTestDataBuilder {
 		return this;
 	}
 	
-	public TicketTestDataBuilder withVehiculo(Vehiculo vehiculo ) {
+	public TicketTestDataBuilder withVehiculo(Vehicle vehiculo ) {
 		this.vehiculo = vehiculo;
 		return this;
 	}

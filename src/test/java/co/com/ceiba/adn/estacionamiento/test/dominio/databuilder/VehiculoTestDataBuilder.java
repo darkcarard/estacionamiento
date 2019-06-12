@@ -1,17 +1,17 @@
 package co.com.ceiba.adn.estacionamiento.test.dominio.databuilder;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.TipoVehiculoEnum;
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
+import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
+import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 
 public class VehiculoTestDataBuilder {
 	
 	private static final String DEFAULT_PLACA = "ABC123";
 	private static final int DEFAULT_CILINDRAJE = 1500;
-	private static final TipoVehiculoEnum DEFAULT_TIPO = TipoVehiculoEnum.CARRO;
+	private static final VehicleTypeEnum DEFAULT_TIPO = VehicleTypeEnum.CARRO;
 	
 	private String placa;
 	private int cilindraje;
-	private TipoVehiculoEnum tipo;
+	private VehicleTypeEnum tipo;
 	
 	public VehiculoTestDataBuilder() {
 		
@@ -32,15 +32,15 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}
 	
-	public VehiculoTestDataBuilder withTipo(TipoVehiculoEnum tipo) {
+	public VehiculoTestDataBuilder withTipo(VehicleTypeEnum tipo) {
 		this.tipo = tipo;
 		
 		return this;
 	}
 	
-	public Vehiculo build() {
+	public Vehicle build() {
 		
-		return new Vehiculo(placa, cilindraje, tipo);
+		return new Vehicle(placa, cilindraje, tipo);
 		
 	}
 

@@ -10,14 +10,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Estacionamiento;
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Ticket;
-import co.com.ceiba.adn.estacionamiento.dominio.entity.Vehiculo;
-import co.com.ceiba.adn.estacionamiento.dominio.exception.EstacionamientoException;
 import co.com.ceiba.adn.estacionamiento.test.dominio.BasePrueba;
 import co.com.ceiba.adn.estacionamiento.test.dominio.databuilder.EstacionamientoTestDataBuilder;
 import co.com.ceiba.adn.estacionamiento.test.dominio.databuilder.TicketTestDataBuilder;
 import co.com.ceiba.adn.estacionamiento.test.dominio.databuilder.VehiculoTestDataBuilder;
+import co.com.ceiba.dna.parking.domain.entity.Parking;
+import co.com.ceiba.dna.parking.domain.entity.Ticket;
+import co.com.ceiba.dna.parking.domain.entity.Vehicle;
+import co.com.ceiba.dna.parking.domain.exception.ParkingException;
 
 public class EstacionamientoTest {
 
@@ -31,8 +31,8 @@ public class EstacionamientoTest {
 	private static final String MENSAJE_CUPO_LLENO = "Ya no hay cupo para el tipo de vehículo";
 	private static final String MENSAJE_INGRESO_PLACA_NO_AUTORIZADA = "El vehículo no está autorizado para ingresar al estacionamiento el día de hoy";
 
-	private Estacionamiento estacionamiento;
-	private Vehiculo vehiculo;
+	private Parking estacionamiento;
+	private Vehicle vehiculo;
 
 	@Before
 	public void setUp() {
@@ -61,7 +61,7 @@ public class EstacionamientoTest {
 		Ticket ticket;
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withPlaca(PLACA_NO_EMPIEZA_POR_A);
 		vehiculo = vehiculoTestDataBuilder.build();
-		ticket = estacionamiento.ingresarVehiculo(vehiculo, FECHA_INGRESO_AUTORIZADO);
+		ticket = estacionamiento.vehiculeCheckIn(vehiculo, FECHA_INGRESO_AUTORIZADO);
 		assertNotNull(ticket);
 	}
 
@@ -79,8 +79,8 @@ public class EstacionamientoTest {
 			tickets.add(ticket);
 		}
 		estacionamiento.setTickets(tickets);
-		BasePrueba.assertThrows(() -> estacionamiento.ingresarVehiculo(vehiculo, FECHA_INGRESO),
-				EstacionamientoException.class, MENSAJE_CUPO_LLENO);
+		BasePrueba.assertThrows(() -> estacionamiento.vehiculeCheckIn(vehiculo, FECHA_INGRESO),
+				ParkingException.class, MENSAJE_CUPO_LLENO);
 
 	}
 	
@@ -88,7 +88,7 @@ public class EstacionamientoTest {
 	public void ingresarVehiculoConPlacaAEnDiaAutorizado() {
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withPlaca(PLACA_EMPIEZA_POR_A);
 		vehiculo = vehiculoTestDataBuilder.build();
-		Ticket ticket = estacionamiento.ingresarVehiculo(vehiculo, FECHA_INGRESO_AUTORIZADO);
+		Ticket ticket = estacionamiento.vehiculeCheckIn(vehiculo, FECHA_INGRESO_AUTORIZADO);
 		assertNotNull(ticket);
 	}
 	
@@ -96,15 +96,15 @@ public class EstacionamientoTest {
 	public void ingresarVehiculoConPlacaAEnDiaNoAutorizado() {
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withPlaca(PLACA_EMPIEZA_POR_A);
 		vehiculo = vehiculoTestDataBuilder.build();
-		BasePrueba.assertThrows(() -> estacionamiento.ingresarVehiculo(vehiculo, FECHA_INGRESO_NO_AUTORIZADO),
-				EstacionamientoException.class, MENSAJE_INGRESO_PLACA_NO_AUTORIZADA);
+		BasePrueba.assertThrows(() -> estacionamiento.vehiculeCheckIn(vehiculo, FECHA_INGRESO_NO_AUTORIZADO),
+				ParkingException.class, MENSAJE_INGRESO_PLACA_NO_AUTORIZADA);
 	}
 	
 	@Test
 	public void ingresarVehiculoConPlacaNoAEnDiaAutorizado() {
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withPlaca(PLACA_NO_EMPIEZA_POR_A);
 		vehiculo = vehiculoTestDataBuilder.build();
-		Ticket ticket = estacionamiento.ingresarVehiculo(vehiculo, FECHA_INGRESO_AUTORIZADO);
+		Ticket ticket = estacionamiento.vehiculeCheckIn(vehiculo, FECHA_INGRESO_AUTORIZADO);
 		assertNotNull(ticket);
 	}
 	
@@ -112,7 +112,7 @@ public class EstacionamientoTest {
 	public void ingresarVehiculoConPlacaNoAEnDiaNoAutorizado() {
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().withPlaca(PLACA_NO_EMPIEZA_POR_A);
 		vehiculo = vehiculoTestDataBuilder.build();
-		Ticket ticket = estacionamiento.ingresarVehiculo(vehiculo, FECHA_INGRESO_NO_AUTORIZADO);
+		Ticket ticket = estacionamiento.vehiculeCheckIn(vehiculo, FECHA_INGRESO_NO_AUTORIZADO);
 		assertNotNull(ticket);
 	}
 }
