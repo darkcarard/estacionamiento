@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 import co.com.ceiba.dna.parking.domain.repository.VehiculoRepository;
-import co.com.ceiba.dna.parking.infraestructure.adapter.mapper.VehiculoMapper;
+import co.com.ceiba.dna.parking.infraestructure.adapter.mapper.VehicleMapper;
 
 public class VehiculoRepositoryJPAImpl implements VehiculoRepository {
 
 	private VehiculoRepositoryJPA vehiculoRepository;
-	private VehiculoMapper vehiculoMapper;
+	private VehicleMapper vehiculoMapper;
 	
 	public VehiculoRepositoryJPA getVehiculoRepository() {
 		return vehiculoRepository;
@@ -20,12 +20,12 @@ public class VehiculoRepositoryJPAImpl implements VehiculoRepository {
 		this.vehiculoRepository = vehiculoRepository;
 	}
 
-	public VehiculoMapper getVehiculoMapper() {
+	public VehicleMapper getVehiculoMapper() {
 		return vehiculoMapper;
 	}
 
 	@Autowired
-	public void setVehiculoMapper(VehiculoMapper vehiculoMapper) {
+	public void setVehiculoMapper(VehicleMapper vehiculoMapper) {
 		this.vehiculoMapper = vehiculoMapper;
 	}
 

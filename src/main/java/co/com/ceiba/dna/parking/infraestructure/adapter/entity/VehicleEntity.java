@@ -16,7 +16,7 @@ import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
 public class VehicleEntity {
 
 	@Id
-	private String placa;
+	private String licensePlate;
 
 	private int cylinderCapacity;
 
@@ -26,12 +26,12 @@ public class VehicleEntity {
 	@OneToMany(mappedBy = "vehiculo")
 	private List<TicketEntity> tickets;
 
-	public String getPlaca() {
-		return placa;
+	public String getLicensePlate() {
+		return licensePlate;
 	}
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
 	}
 
 	public int getCylinderCapacity() {

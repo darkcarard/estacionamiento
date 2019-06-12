@@ -3,27 +3,58 @@ package co.com.ceiba.dna.parking.domain.entity;
 import java.util.List;
 
 import co.com.ceiba.dna.parking.infraestructure.adapter.entity.TicketEntity;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@Data
 public class Vehicle {
 
-	private String placa;
+	private String licensePlate;
 	private int cylinderCapacity;
-	private VehicleTypeEnum tipo;
+	private VehicleTypeEnum vehicleType;
 	private List<TicketEntity> tickets;
-
-	public Vehicle(String placa, int cilindraje, VehicleTypeEnum tipo) {
-		
-		ArgumentValidator.requiredValidation(placa, "El número de placa es obligatorio");
-		ArgumentValidator.greaterThanZeroValidation(cilindraje, "El cilindraje no puede ser cero o negativo");
-		ArgumentValidator.requiredValidation(tipo, "El tipo del vehículo es obligatorio");
-		
-		this.placa = placa;
-		this.cylinderCapacity = cilindraje;
-		this.tipo = tipo;
-	}
 	
+	public Vehicle() {
+		
+	}
+
+	public Vehicle(String licensePlate, int cylinderCapacity, VehicleTypeEnum vehicleType) {
+		
+		ArgumentValidator.requiredValidation(licensePlate, "El número de placa es obligatorio");
+		ArgumentValidator.greaterThanZeroValidation(cylinderCapacity, "El cilindraje no puede ser cero o negativo");
+		ArgumentValidator.requiredValidation(vehicleType, "El tipo del vehículo es obligatorio");
+		
+		this.licensePlate = licensePlate;
+		this.cylinderCapacity = cylinderCapacity;
+		this.vehicleType = vehicleType;
+	}
+
+	public String getLicensePlate() {
+		return licensePlate;
+	}
+
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
+
+	public int getCylinderCapacity() {
+		return cylinderCapacity;
+	}
+
+	public void setCylinderCapacity(int cylinderCapacity) {
+		this.cylinderCapacity = cylinderCapacity;
+	}
+
+	public VehicleTypeEnum getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(VehicleTypeEnum vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public List<TicketEntity> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<TicketEntity> tickets) {
+		this.tickets = tickets;
+	}	
 }
