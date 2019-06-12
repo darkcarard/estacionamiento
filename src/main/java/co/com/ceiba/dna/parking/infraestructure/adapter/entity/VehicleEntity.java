@@ -23,7 +23,7 @@ public class VehicleEntity {
 	@Enumerated(EnumType.STRING)
 	private VehicleTypeEnum tipo;
 
-	@OneToMany(mappedBy = "vehiculo")
+	@OneToMany(mappedBy = "vehicle")
 	private List<TicketEntity> tickets;
 
 	public String getLicensePlate() {

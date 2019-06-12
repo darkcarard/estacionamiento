@@ -1,12 +1,14 @@
 package co.com.ceiba.dna.parking.infraestructure.adapter.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
-import co.com.ceiba.dna.parking.domain.repository.VehiculoRepository;
+import co.com.ceiba.dna.parking.domain.repository.VehicleRepository;
 import co.com.ceiba.dna.parking.infraestructure.adapter.mapper.VehicleMapper;
 
-public class VehiculoRepositoryJPAImpl implements VehiculoRepository {
+@Repository
+public class VehiculoRepositoryJPAImpl implements VehicleRepository {
 
 	private VehiculoRepositoryJPA vehiculoRepository;
 	private VehicleMapper vehiculoMapper;
