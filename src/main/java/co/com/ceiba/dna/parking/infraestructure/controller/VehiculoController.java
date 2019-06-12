@@ -15,12 +15,8 @@ public class VehiculoController {
 
 	private CreateVehicleCommandHandler createVehiculoCommandHandler;
 
-	public CreateVehicleCommandHandler getCreateVehiculoCommandHandler() {
-		return createVehiculoCommandHandler;
-	}
-
 	@Autowired
-	public void setCreateVehiculoCommandHandler(CreateVehicleCommandHandler createVehiculoCommandHandler) {
+	public VehiculoController(CreateVehicleCommandHandler createVehiculoCommandHandler) {
 		this.createVehiculoCommandHandler = createVehiculoCommandHandler;
 	}
 

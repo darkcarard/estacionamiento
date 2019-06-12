@@ -10,18 +10,10 @@ public class VehiculoRepositoryJPAImpl implements VehiculoRepository {
 
 	private VehiculoRepositoryJPA vehiculoRepository;
 	private VehicleMapper vehiculoMapper;
-	
-	public VehiculoRepositoryJPA getVehiculoRepository() {
-		return vehiculoRepository;
-	}
 
 	@Autowired
 	public void setVehiculoRepository(VehiculoRepositoryJPA vehiculoRepository) {
 		this.vehiculoRepository = vehiculoRepository;
-	}
-
-	public VehicleMapper getVehiculoMapper() {
-		return vehiculoMapper;
 	}
 
 	@Autowired

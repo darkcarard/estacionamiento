@@ -26,10 +26,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	annotationProcessor("org.projectlombok:lombok:1.18.8")
 
 	compile(
-	"org.projectlombok:lombok:1.18.8",
 	"org.springframework.boot:spring-boot-starter-data-jpa",
 	"org.springframework:spring-jdbc",
 	"com.h2database:h2",
