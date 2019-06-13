@@ -1,8 +1,10 @@
 pipeline {
+	
 	//Donde se va a ejecutar el Pipeline
 	agent {
 		label 'Slave_Induccion'
 	}
+	
 	//Opciones específicas de Pipeline dentro del Pipeline
 	options {
 		//Mantener artefactos y salida de consola para el # específico de ejecuciones recientes del Pipeline.
@@ -10,11 +12,13 @@ pipeline {
 		//No permitir ejecuciones concurrentes de Pipeline
 		disableConcurrentBuilds()
 	}
+	
 	//Una sección que define las herramientas para “autoinstalar” y poner en la PATH
 	tools {
 		jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
 		gradle 'Gradle4.5_Centos' //Preinstalada en la Configuración del Master
 	}
+	
 	//Aquí comienzan los “items” del Pipeline
 	stages{
 		stage('Checkout') {
@@ -27,23 +31,34 @@ pipeline {
 				'https://github.com/darkcarard/estacionamiento.git']]])
 			}
 		}
-		stage('Compile') {
+		
+		/*stage('Compile') {
 			steps{
 				echo "------------>Compile<------------"
 				sh 'gradle --b ./build.gradle compileJava'
 			}
-		}
+		}*/
+		
 		stage('Unit Tests') {
 			steps{
 				echo "------------>Unit Tests<------------"
 				sh 'gradle --b ./build.gradle test'
 			}
 		}
+		
 		stage('Integration Tests') {
 			steps {
 				echo "------------>Integration Tests<------------"
 			}
 		}
+		
+		stage('Jacoco Reports') {
+			steps {
+			  echo "------------>Jacoco Reports<------------"
+			  sh 'gradle --b ./parqueadero/build.gradle jacocoTestReport'
+			}
+		}
+
 		stage('Static Code Analysis') {
 			steps{
 				echo '------------>Análisis de código estático<------------'
@@ -52,6 +67,7 @@ pipeline {
 				}
 			}
 		}
+		
 		stage('Build') {
 			steps {
 				echo "------------>Build<------------"
@@ -59,6 +75,7 @@ pipeline {
 			}
 		}
 	}
+	
 	post {
 		always {
 			echo 'This will always run'
