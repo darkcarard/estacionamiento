@@ -2,6 +2,7 @@ package co.com.ceiba.dna.parking.domain.entity;
 
 import java.util.List;
 
+import co.com.ceiba.dna.parking.domain.validator.ArgumentValidator;
 import co.com.ceiba.dna.parking.infraestructure.adapter.entity.TicketEntity;
 
 public class Vehicle {

@@ -1,8 +1,8 @@
-package co.com.ceiba.dna.parking.domain.entity;
+package co.com.ceiba.dna.parking.domain.validator;
 
 import co.com.ceiba.dna.parking.domain.exception.ParkingException;
 
-public class ArgumentValidator {
+public final class ArgumentValidator {
 
 	private ArgumentValidator() {}
 	

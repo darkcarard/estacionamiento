@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import co.com.ceiba.dna.parking.domain.validator.ParkingValidator;
+
 public class Parking {
 
 	private static final String FULL_CAPACITY_MESSAGE = "Ya no hay cupo para el tipo de vehículo";
