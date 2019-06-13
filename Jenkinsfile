@@ -55,7 +55,7 @@ pipeline {
 		stage('Jacoco Reports') {
 			steps {
 			  echo "------------>Jacoco Reports<------------"
-			  sh 'gradle --b ./parqueadero/build.gradle jacocoTestReport'
+			  sh 'gradle --b ./build.gradle jacocoTestReport'
 			}
 		}
 
