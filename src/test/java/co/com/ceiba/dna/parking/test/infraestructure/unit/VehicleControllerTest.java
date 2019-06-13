@@ -38,10 +38,7 @@ public class VehicleControllerTest {
 	@Test
 	public void saveVehicleTest() throws Exception {
 
-		Vehicle vehicle = new Vehicle();
-		vehicle.setLicensePlate("123");
-		vehicle.setCylinderCapacity(1500);
-		vehicle.setVehicleType(VehicleTypeEnum.CAR);
+		Vehicle vehicle = new Vehicle("123", 1500, VehicleTypeEnum.CAR);
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);

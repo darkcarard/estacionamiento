@@ -57,4 +57,30 @@ public class TicketMapperTest {
 		assertEquals(ticketEntity.getVehicle().getCylinderCapacity(), ticket.getVehicle().getCylinderCapacity());
 		assertEquals(ticketEntity.getVehicle().getVehicleType(), ticket.getVehicle().getVehicleType());
 	}
+	
+	@Test
+	public void domainTicketToEntityTicketWithNullExitDate() {
+		ticketTestDataBuilder.withExitDate(null);
+		ticket = ticketTestDataBuilder.build();
+		ticketEntity = TicketMapper.toEntity(ticket);
+		assertEquals(ticket.getId(), ticketEntity.getId());
+		assertEquals(ticket.getEntryDate().format(LOCAL_DATE_TIME_FORMATTER), dateFormatter.format(ticketEntity.getEntryDate()));
+		assertNull(ticketEntity.getExitDate());
+		assertEquals(ticket.getVehicle().getLicensePlate(), ticketEntity.getVehicle().getLicensePlate());
+		assertEquals(ticket.getVehicle().getCylinderCapacity(), ticketEntity.getVehicle().getCylinderCapacity());
+		assertEquals(ticket.getVehicle().getVehicleType(), ticketEntity.getVehicle().getVehicleType());
+	}
+	
+	@Test
+	public void entityTicketToDomainTicketWithNullExitDate() {
+		ticketEntitytTestDataBuilder.withExitDate(null);
+		ticketEntity = ticketEntitytTestDataBuilder.build();
+		ticket = TicketMapper.toDomain(ticketEntity);
+		assertEquals(ticketEntity.getId(), ticket.getId());
+		assertEquals(dateFormatter.format(ticketEntity.getEntryDate()), ticket.getEntryDate().format(LOCAL_DATE_TIME_FORMATTER));
+		assertNull(ticket.getExitDate());
+		assertEquals(ticketEntity.getVehicle().getLicensePlate(), ticket.getVehicle().getLicensePlate());
+		assertEquals(ticketEntity.getVehicle().getCylinderCapacity(), ticket.getVehicle().getCylinderCapacity());
+		assertEquals(ticketEntity.getVehicle().getVehicleType(), ticket.getVehicle().getVehicleType());
+	}
 }

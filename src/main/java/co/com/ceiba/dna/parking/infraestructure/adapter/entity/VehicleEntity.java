@@ -40,24 +40,12 @@ public class VehicleEntity {
 		return licensePlate;
 	}
 
-	public void setLicensePlate(String licensePlate) {
-		this.licensePlate = licensePlate;
-	}
-
 	public int getCylinderCapacity() {
 		return cylinderCapacity;
 	}
 
-	public void setCylinderCapacity(int cylinderCapacity) {
-		this.cylinderCapacity = cylinderCapacity;
-	}
-
-	public VehicleTypeEnum getVehicleType() {
+		public VehicleTypeEnum getVehicleType() {
 		return vehicleType;
-	}
-
-	public void setVehicleType(VehicleTypeEnum vehicleType) {
-		this.vehicleType = vehicleType;
 	}
 
 	public List<TicketEntity> getTickets() {
