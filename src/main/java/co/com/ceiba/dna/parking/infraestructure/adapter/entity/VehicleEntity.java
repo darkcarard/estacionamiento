@@ -21,10 +21,20 @@ public class VehicleEntity {
 	private int cylinderCapacity;
 
 	@Enumerated(EnumType.STRING)
-	private VehicleTypeEnum tipo;
+	private VehicleTypeEnum vehicleType;
 
 	@OneToMany(mappedBy = "vehicle")
 	private List<TicketEntity> tickets;
+	
+	public VehicleEntity() {
+		
+	}
+
+	public VehicleEntity(String licensePlate, int cylinderCapacity, VehicleTypeEnum vehicleType) {
+		this.licensePlate = licensePlate;
+		this.cylinderCapacity = cylinderCapacity;
+		this.vehicleType = vehicleType;
+	}
 
 	public String getLicensePlate() {
 		return licensePlate;
@@ -42,12 +52,12 @@ public class VehicleEntity {
 		this.cylinderCapacity = cylinderCapacity;
 	}
 
-	public VehicleTypeEnum getTipo() {
-		return tipo;
+	public VehicleTypeEnum getVehicleType() {
+		return vehicleType;
 	}
 
-	public void setTipo(VehicleTypeEnum tipo) {
-		this.tipo = tipo;
+	public void setVehicleType(VehicleTypeEnum vehicleType) {
+		this.vehicleType = vehicleType;
 	}
 
 	public List<TicketEntity> getTickets() {

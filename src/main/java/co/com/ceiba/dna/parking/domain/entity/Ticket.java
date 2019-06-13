@@ -8,16 +8,18 @@ public class Ticket {
 	private LocalDateTime entryDate;
 	private LocalDateTime exitDate;
 	private Vehicle vehicle;
+	private Byte paid;
 	
 	public Ticket() {
 		
 	}
 
-	public Ticket(int id, LocalDateTime entryDate, LocalDateTime exitDate, Vehicle vehicle) {
+	public Ticket(int id, LocalDateTime entryDate, LocalDateTime exitDate, Vehicle vehicle, byte paid) {
 		this.id = id;
 		this.entryDate = entryDate;
 		this.exitDate = exitDate;
 		this.vehicle = vehicle;
+		this.paid = paid;
 	}
 
 	public int getId() {
@@ -51,5 +53,13 @@ public class Ticket {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	
+
+	public Byte getPaid() {
+		return paid;
+	}
+
+	public void setPaid(Byte paid) {
+		this.paid = paid;
+	}
+
 }

@@ -34,6 +34,18 @@ public class TicketEntity {
 	private VehicleEntity vehicle;
 
 	private byte paid;
+	
+	public TicketEntity() {
+		
+	}
+	
+	public TicketEntity(int id, Date entryDate, Date exitDate, VehicleEntity vehicle, byte paid) {
+		this.id = id;
+		this.entryDate = entryDate;
+		this.exitDate = exitDate;
+		this.vehicle = vehicle;
+		this.paid = paid;
+	}
 
 	public int getId() {
 		return id;
