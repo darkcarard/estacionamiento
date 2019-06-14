@@ -2,6 +2,7 @@ package co.com.ceiba.dna.parking.infraestructure.adapter.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,17 +32,17 @@ public class TicketEntity {
 	@Column(name = "fecha_salida")
 	private Date exitDate;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "vehiculo")
 	private VehicleEntity vehicle;
 
-	private byte paid;
+	private Byte paid = 0;
 
 	public TicketEntity() {
 
 	}
 
-	public TicketEntity(int id, Date entryDate, Date exitDate, VehicleEntity vehicle, byte paid) {
+	public TicketEntity(int id, Date entryDate, Date exitDate, VehicleEntity vehicle, Byte paid) {
 		this.id = id;
 		this.entryDate = entryDate;
 		this.exitDate = exitDate;
@@ -73,11 +74,11 @@ public class TicketEntity {
 		this.exitDate = exitDate;
 	}
 
-	public byte getPaid() {
+	public Byte getPaid() {
 		return this.paid;
 	}
 
-	public void setPaid(byte paid) {
+	public void setPaid(Byte paid) {
 		this.paid = paid;
 	}
 

@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
 
 @Entity
@@ -25,7 +23,6 @@ public class VehicleEntity {
 	@Enumerated(EnumType.STRING)
 	private VehicleTypeEnum vehicleType;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "vehicle")
 	private List<TicketEntity> tickets;
 	

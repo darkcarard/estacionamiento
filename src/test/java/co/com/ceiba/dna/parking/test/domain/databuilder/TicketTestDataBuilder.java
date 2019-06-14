@@ -10,13 +10,13 @@ public class TicketTestDataBuilder {
 	private static final int DEFAULT_ID = 1;
 	private static final LocalDateTime DEFAULT_ENTRY_DATE = LocalDateTime.now();
 	private static final Vehicle DEFAULT_VEHICLE = new VehicleTestDataBuilder().build();
-	private static final byte DEFAULT_PAID = 0;
+	private static final Byte DEFAULT_PAID = 0;
 	
 	private int id;
 	private LocalDateTime entryDate;
 	private LocalDateTime exitDate;
 	private Vehicle vehicle;
-	private byte paid;
+	private Byte paid;
 	
 	public TicketTestDataBuilder() {
 		
@@ -46,7 +46,7 @@ public class TicketTestDataBuilder {
 		return this;
 	}
 	
-	public TicketTestDataBuilder withPaid(byte paid) {
+	public TicketTestDataBuilder withPaid(Byte paid) {
 		this.paid = paid;
 		return this;
 	}

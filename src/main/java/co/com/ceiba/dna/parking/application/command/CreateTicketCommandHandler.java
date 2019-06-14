@@ -16,9 +16,8 @@ public class CreateTicketCommandHandler {
 		this.ticketRepository = ticketRepository;
 	}
 
-	public void handler(Ticket ticket) {
-		
-		ticketRepository.save(ticket);
+	public Ticket handler(Ticket ticket) {
+		return ticketRepository.save(ticket);
 	}
 	
 }

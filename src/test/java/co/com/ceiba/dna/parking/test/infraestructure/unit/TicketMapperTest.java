@@ -26,7 +26,9 @@ public class TicketMapperTest {
 	
 	private static final String DATES_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	private static final DateTimeFormatter LOCAL_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATES_FORMAT);
+	private static final Byte EXPECTED_PAID = 0; 
 	private SimpleDateFormat dateFormatter = new SimpleDateFormat(DATES_FORMAT);
+	
 	
 	@Before
 	public void setUp() {
@@ -79,6 +81,32 @@ public class TicketMapperTest {
 		assertEquals(ticketEntity.getId(), ticket.getId());
 		assertEquals(dateFormatter.format(ticketEntity.getEntryDate()), ticket.getEntryDate().format(LOCAL_DATE_TIME_FORMATTER));
 		assertNull(ticket.getExitDate());
+		assertEquals(ticketEntity.getVehicle().getLicensePlate(), ticket.getVehicle().getLicensePlate());
+		assertEquals(ticketEntity.getVehicle().getCylinderCapacity(), ticket.getVehicle().getCylinderCapacity());
+		assertEquals(ticketEntity.getVehicle().getVehicleType(), ticket.getVehicle().getVehicleType());
+	}
+	
+	@Test
+	public void domainTicketToEntityTicketWithNullPaid() {
+		ticketTestDataBuilder.withPaid(null);
+		ticket = ticketTestDataBuilder.build();
+		ticketEntity = TicketMapper.toEntity(ticket);
+		assertEquals(ticket.getId(), ticketEntity.getId());
+		assertEquals(ticket.getEntryDate().format(LOCAL_DATE_TIME_FORMATTER), dateFormatter.format(ticketEntity.getEntryDate()));
+		assertEquals(EXPECTED_PAID, ticketEntity.getPaid());
+		assertEquals(ticket.getVehicle().getLicensePlate(), ticketEntity.getVehicle().getLicensePlate());
+		assertEquals(ticket.getVehicle().getCylinderCapacity(), ticketEntity.getVehicle().getCylinderCapacity());
+		assertEquals(ticket.getVehicle().getVehicleType(), ticketEntity.getVehicle().getVehicleType());
+	}
+	
+	@Test
+	public void entityTicketToDomainTicketWithNullPaid() {
+		ticketEntitytTestDataBuilder.withPaid(null);
+		ticketEntity = ticketEntitytTestDataBuilder.build();
+		ticket = TicketMapper.toDomain(ticketEntity);
+		assertEquals(ticketEntity.getId(), ticket.getId());
+		assertEquals(dateFormatter.format(ticketEntity.getEntryDate()), ticket.getEntryDate().format(LOCAL_DATE_TIME_FORMATTER));
+		assertEquals(EXPECTED_PAID, ticket.getPaid());
 		assertEquals(ticketEntity.getVehicle().getLicensePlate(), ticket.getVehicle().getLicensePlate());
 		assertEquals(ticketEntity.getVehicle().getCylinderCapacity(), ticket.getVehicle().getCylinderCapacity());
 		assertEquals(ticketEntity.getVehicle().getVehicleType(), ticket.getVehicle().getVehicleType());

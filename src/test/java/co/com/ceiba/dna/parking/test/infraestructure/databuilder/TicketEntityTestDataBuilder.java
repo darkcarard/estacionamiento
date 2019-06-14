@@ -10,13 +10,13 @@ public class TicketEntityTestDataBuilder {
 	private static final int DEFAULT_ID = 1;
 	private static final Date DEFAULT_ENTRY_DATE = new Date();
 	private static final VehicleEntity DEFAULT_VEHICLE = new VehicleEntityTestDataBuilder().build();
-	private static final byte DEFAULT_PAID = 0;
+	private static final Byte DEFAULT_PAID = 0;
 	
 	private int id;
 	private Date entryDate;
 	private Date exitDate;
 	private VehicleEntity vehicle;
-	private byte paid;
+	private Byte paid;
 	
 	public TicketEntityTestDataBuilder() {
 		
@@ -46,7 +46,7 @@ public class TicketEntityTestDataBuilder {
 		return this;
 	}
 	
-	public TicketEntityTestDataBuilder withPaid(byte paid) {
+	public TicketEntityTestDataBuilder withPaid(Byte paid) {
 		this.paid = paid;
 		return this;
 	}

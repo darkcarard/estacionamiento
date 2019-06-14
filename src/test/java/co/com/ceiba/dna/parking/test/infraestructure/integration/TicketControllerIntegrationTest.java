@@ -4,6 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,46 +22,49 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import co.com.ceiba.dna.parking.Application;
+import co.com.ceiba.dna.parking.domain.entity.Ticket;
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
-import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
+import co.com.ceiba.dna.parking.test.domain.databuilder.TicketTestDataBuilder;
 import co.com.ceiba.dna.parking.test.domain.databuilder.VehicleTestDataBuilder;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:application-test.yaml")
-public class VehicleControllerTest {
+public class TicketControllerIntegrationTest {
 
-	private static final String DEFAULT_LICENSE_PLATE = "BCD123";
-	private static final int DEFAULT_CYLINDER_CAPACITY = 1500;
-	private static final VehicleTypeEnum DEFAULT_VEHICLE_TYPE = VehicleTypeEnum.CAR;
+	private static final int DEFAULT_ID = 1;
+	private static final LocalDateTime DEFAULT_ENTRY_DATE = LocalDateTime.now();
+	private static final Vehicle DEFAULT_VEHICLE = new VehicleTestDataBuilder().build();
 
 	@Autowired
 	private WebApplicationContext context;
 
 	private MockMvc mvc;
-	private Vehicle vehicle;
+	private Ticket ticket;
+	private ObjectWriter objectWriter;
 
 	@Before
 	public void setUp() {
 		mvc = MockMvcBuilders.webAppContextSetup(context).build();
-		VehicleTestDataBuilder vehicleTestDataBuilder = new VehicleTestDataBuilder()
-				.withLicensePlate(DEFAULT_LICENSE_PLATE).withCylinderCapacity(DEFAULT_CYLINDER_CAPACITY)
-				.withVehicleType(DEFAULT_VEHICLE_TYPE);
-		vehicle = vehicleTestDataBuilder.build();
+		TicketTestDataBuilder ticketTestDataBuilder = new TicketTestDataBuilder().withId(DEFAULT_ID)
+				.withEntryDate(DEFAULT_ENTRY_DATE).withVehicle(DEFAULT_VEHICLE);
+		ticket = ticketTestDataBuilder.build();
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new JavaTimeModule());
+		objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		objectWriter = objectMapper.writer().withDefaultPrettyPrinter();
 	}
 
 	@Test
-	public void saveVehicleTest() throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-		ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-
-		String vehicleJson = ow.writeValueAsString(vehicle);
-
-		mvc.perform(post("/vehiculos").contentType(MediaType.APPLICATION_JSON_UTF8).content(vehicleJson)).andDo(print())
-				.andExpect(status().isOk());
+	public void saveTicketTest() throws Exception {
+		String ticketJson = objectWriter.writeValueAsString(ticket);
+		mvc.perform(post("/tickets").contentType(MediaType.APPLICATION_JSON_UTF8).content(ticketJson)).andDo(print())
+				.andExpect(status().is2xxSuccessful());
 	}
+
 }

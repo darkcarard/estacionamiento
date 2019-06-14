@@ -1,6 +1,8 @@
 package co.com.ceiba.dna.parking.infraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,8 @@ public class TicketController {
 	}
 
 	@PostMapping
-	public void saveTicket(@RequestBody Ticket ticket) {
-		createTicketCommandHandler.handler(ticket);
+	public ResponseEntity<Ticket> saveTicket(@RequestBody Ticket ticket) {
+		Ticket ticketTmp = createTicketCommandHandler.handler(ticket);
+		return new ResponseEntity<>(ticketTmp, HttpStatus.CREATED);
 	}
 }

@@ -66,7 +66,7 @@ public class TicketControllerTest {
 		String ticketJson = objectWriter.writeValueAsString(ticket);
 		
 		mockMvc.perform(post("/tickets").contentType(MediaType.APPLICATION_JSON_UTF8).content(ticketJson))
-				.andDo(print()).andExpect(status().isOk());
+				.andDo(print()).andExpect(status().is2xxSuccessful());
 	}
 
 }

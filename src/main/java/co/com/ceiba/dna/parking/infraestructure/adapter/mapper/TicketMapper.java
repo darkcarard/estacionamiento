@@ -12,9 +12,7 @@ import co.com.ceiba.dna.parking.infraestructure.adapter.entity.TicketEntity;
 @Component
 public final class TicketMapper {
 	
-	private TicketMapper() {
-		
-	}
+	private TicketMapper() {}
 	
 	public static TicketEntity toEntity(Ticket ticket) {
 		TicketEntity ticketEntity = new TicketEntity();
@@ -24,7 +22,9 @@ public final class TicketMapper {
 			ticketEntity.setExitDate(localDateTimeToDate(ticket.getExitDate()));
 		}
 		ticketEntity.setVehicle(VehicleMapper.toEntity(ticket.getVehicle()));
-		ticketEntity.setPaid(ticket.getPaid());
+		if (ticket.getPaid() != null) {
+			ticketEntity.setPaid(ticket.getPaid());
+		}
 		
 		return ticketEntity;
 	}
@@ -37,7 +37,9 @@ public final class TicketMapper {
 			ticket.setExitDate(dateToLocalDateTime(ticketEntity.getExitDate()));
 		}
 		ticket.setVehicle(VehicleMapper.toDomain(ticketEntity.getVehicle()));
-		ticket.setPaid(ticketEntity.getPaid());
+		if (ticketEntity.getPaid() != null) {
+			ticket.setPaid(ticketEntity.getPaid());
+		}
 		
 		return ticket;
 	}

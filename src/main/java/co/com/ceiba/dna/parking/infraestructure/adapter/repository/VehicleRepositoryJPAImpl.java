@@ -12,8 +12,8 @@ public class VehicleRepositoryJPAImpl implements VehicleRepository {
 	private VehicleRepositoryJPA vehicleRepository;
 
 	@Override
-	public Vehicle save(Vehicle vehicle) {	
-		return VehicleMapper.toDomain(vehicleRepository.save(VehicleMapper.toEntity(vehicle)));
+	public void save(Vehicle vehicle) {	
+		vehicleRepository.save(VehicleMapper.toEntity(vehicle));
 	}
 
 }
