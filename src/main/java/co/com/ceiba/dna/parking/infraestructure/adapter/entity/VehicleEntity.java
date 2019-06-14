@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
 
 @Entity
@@ -23,6 +25,7 @@ public class VehicleEntity {
 	@Enumerated(EnumType.STRING)
 	private VehicleTypeEnum vehicleType;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "vehicle")
 	private List<TicketEntity> tickets;
 	
@@ -54,19 +57,5 @@ public class VehicleEntity {
 
 	public void setTickets(List<TicketEntity> tickets) {
 		this.tickets = tickets;
-	}
-
-	public TicketEntity addTicket(TicketEntity ticket) {
-		getTickets().add(ticket);
-		ticket.setVehicle(this);
-
-		return ticket;
-	}
-
-	public TicketEntity removeTicket(TicketEntity ticket) {
-		getTickets().remove(ticket);
-		ticket.setVehicle(null);
-
-		return ticket;
 	}
 }

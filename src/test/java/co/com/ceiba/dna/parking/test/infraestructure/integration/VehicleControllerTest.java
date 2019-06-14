@@ -4,12 +4,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,50 +24,42 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import co.com.ceiba.dna.parking.Application;
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
-import co.com.ceiba.dna.parking.infraestructure.adapter.entity.TicketEntity;
 import co.com.ceiba.dna.parking.test.domain.databuilder.VehicleTestDataBuilder;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @AutoConfigureMockMvc
-@TestPropertySource(
-  locations = "classpath:application-test.yaml")
+@TestPropertySource(locations = "classpath:application-test.yaml")
 public class VehicleControllerTest {
 
 	private static final String DEFAULT_LICENSE_PLATE = "BCD123";
 	private static final int DEFAULT_CYLINDER_CAPACITY = 1500;
 	private static final VehicleTypeEnum DEFAULT_VEHICLE_TYPE = VehicleTypeEnum.CAR;
-	
+
 	@Autowired
 	private WebApplicationContext context;
-	
+
 	private MockMvc mvc;
 	private Vehicle vehicle;
-	
+
 	@Before
 	public void setUp() {
 		mvc = MockMvcBuilders.webAppContextSetup(context).build();
-		VehicleTestDataBuilder vehicleTestDataBuilder = new VehicleTestDataBuilder().withLicensePlate(DEFAULT_LICENSE_PLATE)
-				.withCylinderCapacity(DEFAULT_CYLINDER_CAPACITY).withVehicleType(DEFAULT_VEHICLE_TYPE);
+		VehicleTestDataBuilder vehicleTestDataBuilder = new VehicleTestDataBuilder()
+				.withLicensePlate(DEFAULT_LICENSE_PLATE).withCylinderCapacity(DEFAULT_CYLINDER_CAPACITY)
+				.withVehicleType(DEFAULT_VEHICLE_TYPE);
 		vehicle = vehicleTestDataBuilder.build();
 	}
-	
+
 	@Test
 	public void saveVehicleTest() throws Exception {
-		vehicle.setTickets(new ArrayList<TicketEntity>());
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 		ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-		
+
 		String vehicleJson = ow.writeValueAsString(vehicle);
-		
-		System.out.println("********************************" + vehicleJson);
-		
-		
-		mvc.perform(post("/vehiculos")
-				 .contentType(MediaType.APPLICATION_JSON_UTF8)
-		         .content(vehicleJson))
-		         .andDo(print())
-		         .andExpect(status().isOk());
+
+		mvc.perform(post("/vehiculos").contentType(MediaType.APPLICATION_JSON_UTF8).content(vehicleJson)).andDo(print())
+				.andExpect(status().isOk());
 	}
 }

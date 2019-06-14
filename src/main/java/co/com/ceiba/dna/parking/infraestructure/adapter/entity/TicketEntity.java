@@ -21,10 +21,12 @@ public class TicketEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_ingreso")
 	private Date entryDate;
 
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_salida")
 	private Date exitDate;
@@ -34,11 +36,11 @@ public class TicketEntity {
 	private VehicleEntity vehicle;
 
 	private byte paid;
-	
+
 	public TicketEntity() {
-		
+
 	}
-	
+
 	public TicketEntity(int id, Date entryDate, Date exitDate, VehicleEntity vehicle, byte paid) {
 		this.id = id;
 		this.entryDate = entryDate;

@@ -6,14 +6,14 @@ import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 import co.com.ceiba.dna.parking.domain.repository.VehicleRepository;
 import co.com.ceiba.dna.parking.infraestructure.adapter.mapper.VehicleMapper;
 
-public class VehiculoRepositoryJPAImpl implements VehicleRepository {
+public class VehicleRepositoryJPAImpl implements VehicleRepository {
 
 	@Autowired
-	private VehiculoRepositoryJPA vehicleRepository;
+	private VehicleRepositoryJPA vehicleRepository;
 
 	@Override
-	public void save(Vehicle vehicle) {	
-		vehicleRepository.save(VehicleMapper.toEntity(vehicle));
+	public Vehicle save(Vehicle vehicle) {	
+		return VehicleMapper.toDomain(vehicleRepository.save(VehicleMapper.toEntity(vehicle)));
 	}
 
 }

@@ -9,16 +9,16 @@ import co.com.ceiba.dna.parking.domain.repository.VehicleRepository;
 @Component
 public class CreateVehicleCommandHandler {
 
-	private VehicleRepository repository;
+	
+	private VehicleRepository vehicleRepository;
 
 	@Autowired
-	public CreateVehicleCommandHandler(VehicleRepository repository) {
-		this.repository = repository;
+	public CreateVehicleCommandHandler(VehicleRepository vehicleRepository) {
+		this.vehicleRepository = vehicleRepository;
 	}
-	
+
 	public void handler(Vehicle vehiculo) {
-		
-		repository.save(vehiculo);
+		vehicleRepository.save(vehiculo);
 	}
 	
 }
