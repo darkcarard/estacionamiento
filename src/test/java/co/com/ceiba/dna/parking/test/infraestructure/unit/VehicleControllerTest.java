@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import co.com.ceiba.dna.parking.application.command.CreateVehicleCommandHandler;
+import co.com.ceiba.dna.parking.application.service.VehicleService;
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
 import co.com.ceiba.dna.parking.domain.repository.VehicleRepository;
@@ -43,7 +43,7 @@ public class VehicleControllerTest {
 	private VehicleRepository vehicleRepository;
 
 	@MockBean
-	private CreateVehicleCommandHandler createVehicleCommandHandler;
+	private VehicleService vehicleService;
 
 	@Before
 	public void setUp() {

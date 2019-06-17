@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import co.com.ceiba.dna.parking.application.command.CreateTicketCommandHandler;
+import co.com.ceiba.dna.parking.application.service.TicketService;
 import co.com.ceiba.dna.parking.domain.entity.Ticket;
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 import co.com.ceiba.dna.parking.domain.repository.TicketRepository;
@@ -47,7 +47,7 @@ public class TicketControllerTest {
 	private TicketRepository ticketRepository;
 
 	@MockBean
-	private CreateTicketCommandHandler createTicketCommandHandler;
+	private TicketService ticketService;
 
 	@Before
 	public void setUp() {

@@ -22,3 +22,7 @@ server:
    port: 8085
    servlet:
       context-path: /estacionamiento
+logging:
+  level:
+    root: ERROR
+  file: application.log

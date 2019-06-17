@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
 
 @Entity
-@Table(name = "vehiculo")
+@Table(name = "vehicle")
 public class VehicleEntity {
 
 	@Id
@@ -54,5 +54,19 @@ public class VehicleEntity {
 
 	public void setTickets(List<TicketEntity> tickets) {
 		this.tickets = tickets;
+	}
+	
+	public TicketEntity addTicket(TicketEntity ticket) {
+		getTickets().add(ticket);
+		ticket.setVehicle(this);
+
+		return ticket;
+	}
+
+	public TicketEntity removeTicket(TicketEntity ticket) {
+		getTickets().remove(ticket);
+		ticket.setVehicle(null);
+
+		return ticket;
 	}
 }

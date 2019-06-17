@@ -2,7 +2,9 @@ package co.com.ceiba.dna.parking.infraestructure.adapter.mapper;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -42,6 +44,16 @@ public final class TicketMapper {
 		}
 		
 		return ticket;
+	}
+	
+	public static List<Ticket> toDomain(List<TicketEntity> ticketEntities) {
+		List<Ticket> tickets = new ArrayList<>();
+		ticketEntities.forEach(ticketEntity->{
+			Ticket ticket = toDomain(ticketEntity);
+			tickets.add(ticket);
+		});
+		
+		return tickets;
 	}
 	
 	private static Date localDateTimeToDate(LocalDateTime inDate) {
