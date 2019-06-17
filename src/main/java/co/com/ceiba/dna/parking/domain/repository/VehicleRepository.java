@@ -8,6 +8,6 @@ public interface VehicleRepository {
 	
 	public void save(Vehicle vehicle);
 	
-	public List<Vehicle> findAll(); 
+	public List<Vehicle> findAllVehicles(); 
 
 }

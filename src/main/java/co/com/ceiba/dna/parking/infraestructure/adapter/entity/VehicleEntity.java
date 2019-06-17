@@ -1,12 +1,9 @@
 package co.com.ceiba.dna.parking.infraestructure.adapter.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
@@ -22,9 +19,6 @@ public class VehicleEntity {
 
 	@Enumerated(EnumType.STRING)
 	private VehicleTypeEnum vehicleType;
-
-	@OneToMany(mappedBy = "vehicle")
-	private List<TicketEntity> tickets;
 	
 	public VehicleEntity() {
 		
@@ -46,27 +40,5 @@ public class VehicleEntity {
 
 		public VehicleTypeEnum getVehicleType() {
 		return vehicleType;
-	}
-
-	public List<TicketEntity> getTickets() {
-		return this.tickets;
-	}
-
-	public void setTickets(List<TicketEntity> tickets) {
-		this.tickets = tickets;
-	}
-	
-	public TicketEntity addTicket(TicketEntity ticket) {
-		getTickets().add(ticket);
-		ticket.setVehicle(this);
-
-		return ticket;
-	}
-
-	public TicketEntity removeTicket(TicketEntity ticket) {
-		getTickets().remove(ticket);
-		ticket.setVehicle(null);
-
-		return ticket;
 	}
 }

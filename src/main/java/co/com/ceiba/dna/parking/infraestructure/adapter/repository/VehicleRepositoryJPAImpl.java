@@ -22,7 +22,7 @@ public class VehicleRepositoryJPAImpl implements VehicleRepository {
 	}
 
 	@Override
-	public List<Vehicle> findAll() {
+	public List<Vehicle> findAllVehicles() {
 		return VehicleMapper.toDomain(vehicleRepository.findAll());
 	}
 

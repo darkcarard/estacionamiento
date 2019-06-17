@@ -1,6 +1,7 @@
 package co.com.ceiba.dna.parking.test.infraestructure.unit;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -62,7 +63,12 @@ public class VehicleControllerTest {
 		String vehicleJson = objectWriter.writeValueAsString(vehicle);
 
 		mockMvc.perform(post("/vehiculos").contentType(MediaType.APPLICATION_JSON_UTF8).content(vehicleJson))
-				.andDo(print()).andExpect(status().isOk());
+				.andDo(print()).andExpect(status().is2xxSuccessful());
 	}
 
+	@Test
+	public void findAllVehiclesTest() throws Exception {
+		mockMvc.perform(get("/vehiculos").contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful());
+	}
+	
 }
