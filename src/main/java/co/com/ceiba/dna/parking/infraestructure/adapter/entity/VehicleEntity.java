@@ -1,5 +1,6 @@
 package co.com.ceiba.dna.parking.infraestructure.adapter.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,11 +14,13 @@ import co.com.ceiba.dna.parking.domain.entity.VehicleTypeEnum;
 public class VehicleEntity {
 
 	@Id
+	@Column(name="license_plate", length = 10)
 	private String licensePlate;
 
 	private int cylinderCapacity;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name="vehicle_type", length = 15)
 	private VehicleTypeEnum vehicleType;
 	
 	public VehicleEntity() {

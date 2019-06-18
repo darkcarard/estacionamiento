@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 public class TicketEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Temporal(TemporalType.TIMESTAMP)
