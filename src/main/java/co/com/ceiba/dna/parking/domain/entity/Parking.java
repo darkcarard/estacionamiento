@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import co.com.ceiba.dna.parking.domain.validator.ParkingValidator;
 
+@Component
 public class Parking {
 
 	private static final String FULL_CAPACITY_MESSAGE = "Ya no hay cupo para el tipo de vehículo";
@@ -34,18 +37,19 @@ public class Parking {
 	}
 
 	public float calculatePrice(Ticket ticket) {
-		
+
 		LocalDateTime tempDateTime = LocalDateTime.from(ticket.getEntryDate());
-		long days = tempDateTime.until( ticket.getExitDate(), ChronoUnit.DAYS);
-		tempDateTime = tempDateTime.plusDays( days );
-		long hours = tempDateTime.until( ticket.getExitDate(), ChronoUnit.HOURS);
-		float price = hours * ticket.getVehicle().getVehicleType().getHourPrice() + days * ticket.getVehicle().getVehicleType().getDayPrice();
-		
+		long days = tempDateTime.until(ticket.getExitDate(), ChronoUnit.DAYS);
+		tempDateTime = tempDateTime.plusDays(days);
+		long hours = tempDateTime.until(ticket.getExitDate(), ChronoUnit.HOURS);
+		float price = hours * ticket.getVehicle().getVehicleType().getHourPrice()
+				+ days * ticket.getVehicle().getVehicleType().getDayPrice();
+
 		if (ticket.getVehicle().getVehicleType().equals(VehicleTypeEnum.MOTORCYCLE)
 				&& ticket.getVehicle().getCylinderCapacity() > 500) {
 			price += 2000F;
 		}
-		
+
 		return price;
 	}
 

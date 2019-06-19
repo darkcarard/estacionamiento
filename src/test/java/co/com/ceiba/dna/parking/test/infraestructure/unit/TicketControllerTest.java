@@ -65,7 +65,6 @@ public class TicketControllerTest {
 	@Test
 	public void saveTicketTest() throws Exception {
 		String ticketJson = objectWriter.writeValueAsString(ticket);
-
 		mockMvc.perform(post("/tickets").contentType(MediaType.APPLICATION_JSON_UTF8).content(ticketJson))
 				.andDo(print()).andExpect(status().is2xxSuccessful());
 	}

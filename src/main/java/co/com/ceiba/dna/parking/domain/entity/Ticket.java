@@ -8,13 +8,13 @@ public class Ticket {
 	private LocalDateTime entryDate;
 	private LocalDateTime exitDate;
 	private Vehicle vehicle;
-	private Byte paid = 0;
+	private boolean paid = false;
 	
 	public Ticket() {
 		
 	}
 
-	public Ticket(int id, LocalDateTime entryDate, LocalDateTime exitDate, Vehicle vehicle, Byte paid) {
+	public Ticket(int id, LocalDateTime entryDate, LocalDateTime exitDate, Vehicle vehicle, boolean paid) {
 		this.id = id;
 		this.entryDate = entryDate;
 		this.exitDate = exitDate;
@@ -54,11 +54,11 @@ public class Ticket {
 		this.vehicle = vehicle;
 	}
 
-	public Byte getPaid() {
+	public boolean getPaid() {
 		return paid;
 	}
 
-	public void setPaid(Byte paid) {
+	public void setPaid(boolean paid) {
 		this.paid = paid;
 	}
 

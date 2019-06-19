@@ -24,9 +24,8 @@ public final class TicketMapper {
 			ticketEntity.setExitDate(localDateTimeToDate(ticket.getExitDate()));
 		}
 		ticketEntity.setVehicle(VehicleMapper.toEntity(ticket.getVehicle()));
-		if (ticket.getPaid() != null) {
-			ticketEntity.setPaid(ticket.getPaid());
-		}
+		ticketEntity.setPaid(ticket.getPaid());
+
 		
 		return ticketEntity;
 	}
@@ -39,9 +38,7 @@ public final class TicketMapper {
 			ticket.setExitDate(dateToLocalDateTime(ticketEntity.getExitDate()));
 		}
 		ticket.setVehicle(VehicleMapper.toDomain(ticketEntity.getVehicle()));
-		if (ticketEntity.getPaid() != null) {
-			ticket.setPaid(ticketEntity.getPaid());
-		}
+		ticket.setPaid(ticketEntity.getPaid());
 		
 		return ticket;
 	}

@@ -9,5 +9,7 @@ public interface TicketRepository {
 	public Ticket save(Ticket ticket);
 	
 	public List<Ticket> findAllTickets();
+	
+	public Ticket findTicketById(int ticketId);
 
 }

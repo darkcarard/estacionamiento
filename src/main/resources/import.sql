@@ -11,4 +11,10 @@ insert into vehicle (license_plate, cylinder_capacity, vehicle_type) values ('II
 insert into vehicle (license_plate, cylinder_capacity, vehicle_type) values ('JJJ000', 450, 'MOTORCYCLE');
 insert into vehicle (license_plate, cylinder_capacity, vehicle_type) values ('KKK111', 400, 'MOTORCYCLE');
 
+insert into ticket(id, entry_date, exit_date, vehicle, paid) values (1, '2019-06-19T11:00:00', null,'AAA111' , false);
+insert into ticket(id, entry_date, exit_date, vehicle, paid) values (2, '2019-06-19T11:00:00', null,'BBB222' , false);
+insert into ticket(id, entry_date, exit_date, vehicle, paid) values (3, '2019-06-19T11:00:00', null,'CCC333' , false);
+insert into ticket(id, entry_date, exit_date, vehicle, paid) values (4, '2019-06-19T11:00:00', null,'DDD444' , false);
+insert into ticket(id, entry_date, exit_date, vehicle, paid) values (5, '2019-06-19T11:00:00', null,'EEE555' , false);
+
 

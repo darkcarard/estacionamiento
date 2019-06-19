@@ -34,13 +34,13 @@ public class TicketEntity {
 	@JoinColumn(name = "vehicle")
 	private VehicleEntity vehicle;
 
-	private Byte paid = 0;
+	private boolean paid = false;
 
 	public TicketEntity() {
 
 	}
 
-	public TicketEntity(int id, Date entryDate, Date exitDate, VehicleEntity vehicle, Byte paid) {
+	public TicketEntity(int id, Date entryDate, Date exitDate, VehicleEntity vehicle, boolean paid) {
 		this.id = id;
 		this.entryDate = entryDate;
 		this.exitDate = exitDate;
@@ -72,11 +72,11 @@ public class TicketEntity {
 		this.exitDate = exitDate;
 	}
 
-	public Byte getPaid() {
+	public boolean getPaid() {
 		return this.paid;
 	}
 
-	public void setPaid(Byte paid) {
+	public void setPaid(boolean paid) {
 		this.paid = paid;
 	}
 
