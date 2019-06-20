@@ -1,28 +1,35 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
-  application:
-    name: parking
-  datasource:
-    dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-    url: jdbc:h2:mem:parking;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    database: H2
-    show-sql: true
-    properties:
-       hibernate:
-         format_sql: true
-  h2:
-    console:
-      enabled: true
+   main:
+      allow-bean-definition-overriding: true
+   application:
+      name: parking
+   datasource:
+      dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+      url: jdbc:h2:mem:parking;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password: null
+   jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      database: H2
+      show-sql: true
+      properties:
+         hibernate:
+            format_sql: true
+   h2:
+      console:
+         enabled: true
 server:
    port: 8085
    servlet:
       context-path: /estacionamiento
+eureka:
+   client:
+      registerWithEureka: true
+      serviceUrl:
+         defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+   instance:
+      preferIpAddress: true
 logging:
-  level:
-    root: ERROR
-  file: application.log
+   level:
+      root: ERROR
+   file: application.log
