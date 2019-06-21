@@ -18,7 +18,7 @@ import co.com.ceiba.dna.parking.application.service.ParkingService;
 import co.com.ceiba.dna.parking.domain.entity.Ticket;
 import co.com.ceiba.dna.parking.domain.entity.Vehicle;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/parking")
 public class ParkingController {

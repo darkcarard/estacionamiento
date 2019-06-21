@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.ceiba.dna.parking.application.service.TicketService;
 import co.com.ceiba.dna.parking.domain.entity.Ticket;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
